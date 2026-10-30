@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heirloom - Preserving Culinary Heritage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: { 50: '#fffbeb', 100: '#fef3c7', 600: '#d97706', 700: '#b45309', 800: '#92400e', 900: '#78350f' },
+                        stone: { 50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4', 700: '#44403c', 800: '#292524', 900: '#1c1917' },
+                        terra: { 600: '#c25e38', 700: '#a34a26' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fcfbfa;
+            color: #292524;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .recipe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f5f5f4;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d6d3d1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-600 to-terra-700 flex items-center justify-center text-white shadow-md shadow-amber-600/20">
+                    <i class="fa-solid fa-wheat-awn text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-bold tracking-tight font-serif text-stone-900">Heirloom</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-terra-700 font-semibold">Culinary Time Capsule</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-stone-600">
+                <a href="#vault" class="hover:text-amber-700 transition">Recipe Vault</a>
+                <a href="#generator" class="hover:text-amber-700 transition">Dish Matcher</a>
+                <a href="#stories" class="hover:text-amber-700 transition">Voice & Stories</a>
+                <a href="#submit" class="hover:text-amber-700 transition">Share Heritage</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="#submit" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-amber-800 hover:bg-amber-900 text-white text-sm font-semibold shadow-sm transition active:scale-95">
+                    <i class="fa-solid fa-plus mr-2 text-xs"></i> Add Recipe
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden text-stone-700 p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-stone-200 px-4 pt-2 pb-4 space-y-2">
+            <a href="#vault" class="block py-2 text-stone-700 hover:text-amber-700 font-medium">Recipe Vault</a>
+            <a href="#generator" class="block py-2 text-stone-700 hover:text-amber-700 font-medium">Dish Matcher</a>
+            <a href="#stories" class="block py-2 text-stone-700 hover:text-amber-700 font-medium">Voice & Stories</a>
+            <a href="#submit" class="block py-2 text-amber-800 font-semibold">Share Heritage</a>
+        </div>
+    </header>
+
+    <section class="relative overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-32 bg-gradient-to-b from-amber-50/60 via-stone-50 to-stone-50">
+        <div class="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-semibold tracking-wide uppercase">
+                        <i class="fa-solid fa-heart text-terra-600 animate-pulse"></i>
+                        <span>Bridging Generations Through Flavor</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-[1.15]">
+                        Ensure Family Recipes <span class="italic font-serif text-terra-700">Never Fade</span> Away.
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-stone-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Every dash of spice and handwritten index card carries a piece of your ancestry. Capture secret techniques, untold stories, and generational soul before they are lost to time.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#vault" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-amber-800 hover:bg-amber-900 text-white font-semibold shadow-lg shadow-amber-900/10 transition flex items-center justify-center space-x-3">
+                            <span>Explore Recipe Vault</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#generator" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-stone-100 border border-stone-300 text-stone-800 font-semibold transition flex items-center justify-center space-x-3">
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i>
+                            <span>Find Your Family Dish</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-6 border-t border-stone-200/80 flex items-center justify-center lg:justify-start space-x-8 text-stone-500 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-bold text-stone-900 text-lg">1,420+</span>
+                            <span class="text-xs text-left leading-tight">Heirlooms Preserved</span>
+                        </div>
+                        <div class="w-px h-8 bg-stone-200"></div>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-bold text-stone-900 text-lg">64</span>
+                            <span class="text-xs text-left leading-tight">Cultures Represented</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative backdrop card -->
+                        <div class="absolute -inset-4 bg-gradient-to-tr from-amber-600/20 to-terra-600/20 rounded-3xl blur-2xl transform rotate-3"></div>
+                        
+                        <!-- Main Hero Card -->
+                        <div class="relative bg-white rounded-3xl p-6 shadow-2xl border border-stone-200 space-y-6">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 bg-amber-50 text-amber-800 text-xs font-semibold rounded-lg border border-amber-200">Featured Heirloom</span>
+                                <span class="text-xs text-stone-400 font-medium">Added by Nonna Maria, 1952</span>
+                            </div>
+                            
+                            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-inner bg-stone-100">
+                                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80" alt="Handmade Tagliolini Pasta" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                                    <div class="text-white">
+                                        <p class="text-xs uppercase tracking-widest text-amber-300 font-bold">Emilia-Romagna, Italy</p>
+                                        <h3 class="text-xl font-serif font-bold">Nonna's Sunday Tagliolini</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50/60 rounded-2xl p-4 border border-amber-100/80">
+                                <div class="flex items-center space-x-2 text-amber-900 font-semibold text-xs uppercase tracking-wider mb-1">
+                                    <i class="fa-solid fa-key text-amber-600"></i>
+                                    <span>Secret Family Tip</span>
+                                </div>
+                                <p class="text-stone-700 text-sm italic">"Never use cold eggs. Knead the dough exactly until it feels like velvet under your palms—no timer can replace touch."</p>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2">
+                                <div class="flex items-center space-x-2 text-xs text-stone-500">
+                                    <i class="fa-solid fa-clock text-amber-700"></i>
+                                    <span>Prep: 45 mins</span>
+                                </div>
+                                <a href="#vault" class="text-xs font-bold text-amber-800 hover:text-amber-900 flex items-center space-x-1">
+                                    <span>View full recipe</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vault" class="py-20 bg-stone-100/70 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-terra-700">Living Archive</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-stone-900 mt-1">The Generational Recipe Vault</h2>
+                </div>
+                <p class="text-stone-600 text-sm max-w-md mt-2 md:mt-0">
+                    Explore authentic dishes passed down through kitchens across the globe. Filter by culture or dietary heritage to find your roots.
+                </p>
+            </div>
+
+            <!-- Filters and Search Bar -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-stone-200 mb-10 flex flex-col lg:flex-row gap-4 items-center justify-between">
+                <div class="relative w-full lg:w-96">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-stone-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="recipeSearch" placeholder="Search by dish name, ingredient, or origin..." class="w-full pl-11 pr-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0" id="filterButtons">
+                    <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-amber-800 text-white shadow-sm transition">All Cultures</button>
+                    <button data-filter="Italian" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 transition">Italian</button>
+                    <button data-filter="Mexican" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 transition">Mexican</button>
+                    <button data-filter="Indian" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 transition">Indian</button>
+                    <button data-filter="Japanese" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 transition">Japanese</button>
+                    <button data-filter="Moroccan" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 transition">Moroccan</button>
+                </div>
+            </div>
+
+            <!-- Recipe Grid -->
+            <div id="recipeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Recipe cards populated dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="generator" class="py-20 bg-white border-t border-stone-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-700">Interactive Discovery</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-stone-900 mt-1">Find Your Family Dish</h2>
+                <p class="text-stone-600 text-sm mt-3">
+                    Not sure where your roots lead or looking for tonight's culinary inspiration? Answer 3 quick questions to discover a heritage recipe that matches your mood.
+                </p>
+            </div>
+
+            <div class="bg-stone-50 rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-xl relative overflow-hidden">
+                <div id="quizContainer" class="space-y-6">
+                    <!-- Quiz Step 1 -->
+                    <div class="quiz-step" data-step="1">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-stone-400">Question 1 of 3</span>
+                            <div class="flex space-x-1.5">
+                                <div class="w-8 h-1.5 bg-amber-600 rounded-full"></div>
+                                <div class="w-8 h-1.5 bg-stone-200 rounded-full"></div>
+                                <div class="w-8 h-1.5 bg-stone-200 rounded-full"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold font-serif text-stone-900 mb-6">What kind of flavor profile speaks to your soul today?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="setQuizAnswer(1, 'Warm & Earthy')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Warm & Earthy</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Cumin, cinnamon, slow-roasted broths, and rustic grains.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(1, 'Bright & Zesty')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Bright & Zesty</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Citrus, fresh herbs, chili, and lively fermentation.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(1, 'Comforting & Rich')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Comforting & Rich</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Butter, handmade doughs, slow-simmered stews.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(1, 'Fragrant & Spiced')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Fragrant & Spiced</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Cardamom, saffron, ginger, and aromatic layers.</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Step 2 (Hidden initially) -->
+                    <div class="quiz-step hidden" data-step="2">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-stone-400">Question 2 of 3</span>
+                            <div class="flex space-x-1.5">
+                                <div class="w-8 h-1.5 bg-amber-600 rounded-full"></div>
+                                <div class="w-8 h-1.5 bg-amber-600 rounded-full"></div>
+                                <div class="w-8 h-1.5 bg-stone-200 rounded-full"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold font-serif text-stone-900 mb-6">What is your primary cooking occasion?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="setQuizAnswer(2, 'Sunday Family Gathering')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Sunday Family Gathering</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Takes hours, feeds a crowd, fills the entire house with aroma.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(2, 'Quick Weeknight Comfort')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Quick Weeknight Comfort</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Fast, nourishing, and deeply satisfying after a long day.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(2, 'Festive Celebration')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Festive Celebration</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Rooted in ancient holidays and cultural ceremonies.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(2, 'Rainy Day Soul Food')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Rainy Day Soul Food</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Warm broths or baked goods that hug you from the inside.</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Step 3 (Hidden initially) -->
+                    <div class="quiz-step hidden" data-step="3">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-stone-400">Question 3 of 3</span>
+                            <div class="flex space-x-1.5">
+                                <div class="w-8 h-1.5 bg-amber-600 rounded-full"></div>
+                                <div class="w-8 h-1.5 bg-amber-600 rounded-full"></div>
+                                <div class="w-8 h-1.5 bg-amber-600 rounded-full"></div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold font-serif text-stone-900 mb-6">Which emotion do you want to evoke through this meal?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="setQuizAnswer(3, 'Nostalgia for a place I have never been')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Ancestral Wanderlust</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Connecting with roots across oceans and generations.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(3, 'Pure warmth and belonging')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Pure Warmth & Belonging</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Making loved ones feel safe and cherished.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(3, 'Curiosity and culinary adventure')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Culinary Discovery</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Mastering an intricate traditional technique.</span>
+                            </button>
+                            <button onclick="setQuizAnswer(3, 'Deep comfort and healing')" class="quiz-option text-left p-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-600 hover:shadow-md transition group">
+                                <span class="block font-semibold text-stone-900 group-hover:text-amber-800">Healing & Restoration</span>
+                                <span class="text-xs text-stone-500 mt-1 block">Time-tested remedies passed down by grandmothers.</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Result (Hidden initially) -->
+                    <div id="quizResult" class="hidden text-center py-6">
+                        <div class="w-16 h-16 bg-amber-100 text-amber-800 rounded-2xl mx-auto flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-terra-700">Your Heritage Match Found</span>
+                        <h3 id="resultTitle" class="text-2xl sm:text-3xl font-bold font-serif text-stone-900 mt-2 mb-3"></h3>
+                        <p id="resultDesc" class="text-stone-600 max-w-lg mx-auto text-sm mb-6"></p>
+                        <div class="flex items-center justify-center gap-4">
+                            <button onclick="viewMatchedRecipe()" class="px-6 py-3 bg-amber-800 hover:bg-amber-900 text-white font-semibold rounded-xl text-sm shadow-md transition">
+                                View Full Recipe & Secret Tip
+                            </button>
+                            <button onclick="resetQuiz()" class="px-6 py-3 bg-white hover:bg-stone-100 border border-stone-300 text-stone-700 font-semibold rounded-xl text-sm transition">
+                                Retake Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stories" class="py-20 bg-amber-50/50 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-terra-700">Oral History Project</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-stone-900">Record a Voice Note with an Elder</h2>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Recipes are more than measurements—they carry accents, laughter, and kitchen wisdom. Use our guided story prompts to record your grandparents or elders while cooking their signature dish.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-amber-200 text-amber-900 flex items-center justify-center text-xs font-bold mt-0.5">1</div>
+                            <p class="text-sm text-stone-700"><strong>Prompt Generator:</strong> Choose from 50+ thoughtful questions about childhood memories and secret techniques.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-amber-200 text-amber-900 flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                            <p class="text-sm text-stone-700"><strong>Audio Attachment:</strong> Attach the voice clip directly to the recipe card for future generations to hear.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-stone-200 space-y-6">
+                        <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+                                    <i class="fa-solid fa-microphone-lines"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Generational Story Prompt Box</h4>
+                                    <span class="text-xs text-stone-500">Tap to draw a meaningful conversation starter</span>
+                                </div>
+                            </div>
+                            <button onclick="generateNewPrompt()" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-semibold transition flex items-center space-x-1.5">
+                                <i class="fa-solid fa-shuffle"></i>
+                                <span>New Prompt</span>
+                            </button>
+                        </div>
+
+                        <div class="bg-amber-50/70 rounded-2xl p-6 border border-amber-200/60 text-center space-y-3">
+                            <i class="fa-solid fa-quote-left text-2xl text-amber-700/60"></i>
+                            <p id="storyPromptText" class="text-stone-800 font-serif text-lg sm:text-xl italic px-4">
+                                "What was the very first dish you learned to cook by your mother's side, and what mistake did you make the first time?"
+                            </p>
+                            <span id="promptCategory" class="inline-block text-[10px] uppercase font-bold tracking-widest text-terra-700 bg-white px-3 py-1 rounded-full border border-amber-200">Childhood Memory</span>
+                        </div>
+
+                        <!-- Simulated Voice Recorder -->
+                        <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <button id="recordBtn" onclick="toggleRecording()" class="w-12 h-12 rounded-full bg-terra-700 hover:bg-terra-600 text-white flex items-center justify-center shadow-md transition">
+                                    <i id="recordIcon" class="fa-solid fa-microphone"></i>
+                                </button>
+                                <div>
+                                    <span id="recordStatus" class="font-semibold text-xs text-stone-900 block">Tap to record voice memory</span>
+                                    <span id="recordTimer" class="text-[11px] text-stone-500">00:00 / 05:00 max</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <div class="w-1 h-3 bg-amber-600 rounded-full animate-bounce"></div>
+                                <div class="w-1 h-6 bg-amber-600 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                                <div class="w-1 h-4 bg-amber-600 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                                <div class="w-1 h-7 bg-amber-600 rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="submit" class="py-20 bg-white border-t border-stone-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-terra-700">Contribute to the Archive</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-stone-900 mt-1">Share Your Family Heritage</h2>
+                <p class="text-stone-600 text-sm mt-3">
+                    Ensure your family's secret recipes and culinary stories are preserved for generations to come. Fill out the heirloom ledger below.
+                </p>
+            </div>
+
+            <form id="recipeForm" onsubmit="handleRecipeSubmit(event)" class="bg-stone-50 rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-xl space-y-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Dish Name *</label>
+                        <input type="text" id="dishName" required placeholder="e.g., Abuela's Mole Poblano" class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Culture / Region *</label>
+                        <input type="text" id="dishCulture" required placeholder="e.g., Puebla, Mexico" class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Prep Time</label>
+                        <input type="text" id="prepTime" placeholder="e.g., 40 mins" class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Cook Time</label>
+                        <input type="text" id="cookTime" placeholder="e.g., 2 hours" class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Category</label>
+                        <select id="dishCategory" class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                            <option value="Italian">Italian</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="Moroccan">Moroccan</option>
+                            <option value="Other">Other Culture</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Ingredients (one per line) *</label>
+                    <textarea id="dishIngredients" rows="4" required placeholder="3 dried ancho chiles&#10;2 ripe plantains&#10;1 cinnamon stick..." class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Step-by-Step Instructions *</label>
+                    <textarea id="dishInstructions" rows="5" required placeholder="1. Toast chiles on a dry skillet until fragrant...&#10;2. Simmer broth on low heat..." class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Secret Family Tip 🔑 *</label>
+                    <input type="text" id="dishTip" required placeholder="e.g., Always roast the seeds twice for maximum depth." class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Contributor Name & Era</label>
+                        <input type="text" id="dishContributor" placeholder="e.g., Grandfather Mateo, 1968" class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Dish Image URL (Optional)</label>
+                        <input type="url" id="dishImage" placeholder="https://images.unsplash.com/..." class="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 transition">
+                    </div>
+                </div>
+
+                <div class="pt-4 flex items-center justify-end">
+                    <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-amber-800 hover:bg-amber-900 text-white font-semibold rounded-xl text-sm shadow-lg shadow-amber-900/10 transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-feather"></i>
+                        <span>Preserve Heirloom in Vault</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div id="recipeModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl relative border border-stone-200">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center z-10 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalContent" class="p-6 sm:p-10 space-y-6">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-stone-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center space-x-3 border border-stone-700">
+        <div class="w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h5 id="toastTitle" class="font-bold text-sm">Success!</h5>
+            <p id="toastMessage" class="text-xs text-stone-300">Recipe successfully added to the living vault.</p>
+        </div>
+    </div>
+
+    <footer class="bg-stone-900 text-stone-400 py-16 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-wheat-awn text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold font-serif text-white">Heirloom</span>
+                    </div>
+                    <p class="text-sm text-stone-400 max-w-sm leading-relaxed">
+                        Dedicated to ensuring that cultural recipes, handwritten index cards, and the oral histories of elders are never lost to the new generation.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Navigation</h5>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#vault" class="hover:text-amber-400 transition">Recipe Vault</a></li>
+                        <li><a href="#generator" class="hover:text-amber-400 transition">Dish Matcher</a></li>
+                        <li><a href="#stories" class="hover:text-amber-400 transition">Oral History Prompts</a></li>
+                        <li><a href="#submit" class="hover:text-amber-400 transition">Share Heritage</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Preservation Pledge</h5>
+                    <p class="text-xs text-stone-400 leading-relaxed mb-4">
+                        "A culture is measured not only by what it creates, but by what it refuses to forget."
+                    </p>
+                    <span class="text-xs font-bold text-amber-500 uppercase tracking-widest">#KeepTheFlavorAlive</span>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500">
+                <p>&copy; 2026 Heirloom Platform. Built with love for future generations.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-stone-300 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-stone-300 transition">Community Guidelines</a>
+                    <a href="#" class="hover:text-stone-300 transition">Archive API</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initial Recipe Database
+        let recipes = [
+            {
+                id: 1,
+                name: "Nonna's Sunday Tagliolini",
+                culture: "Italian",
+                origin: "Emilia-Romagna, Italy",
+                prepTime: "45 mins",
+                cookTime: "15 mins",
+                category: "Italian",
+                image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80",
+                contributor: "Nonna Maria, 1952",
+                ingredients: [
+                    "400g Tipo 00 flour",
+                    "4 large pasture-raised eggs",
+                    "1 tbsp extra virgin olive oil",
+                    "Pinch of sea salt"
+                ],
+                instructions: [
+                    "Mound the flour on a clean wooden board and create a deep well in the center.",
+                    "Crack eggs into the well along with olive oil and salt. Beat with a fork gently.",
+                    "Gradually incorporate flour from the inner rim until a dough forms.",
+                    "Knead vigorously for 10 minutes until smooth and elastic. Rest wrapped for 30 minutes.",
+                    "Roll thin and cut into delicate ribbons."
+                ],
+                tip: "Never use cold eggs straight from the fridge. Knead the dough exactly until it feels like velvet under your palms."
+            },
+            {
+                id: 2,
+                name: "Oaxacan Black Mole con Pollo",
+                culture: "Mexican",
+                origin: "Oaxaca, Mexico",
+                prepTime: "1 hour",
+                cookTime: "3 hours",
+                category: "Mexican",
+                image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
+                contributor: "Abuela Consuelo, 1964",
+                ingredients: [
+                    "4 dried chilhuacle negro chiles",
+                    "3 dried mulato chiles",
+                    "1 ripe plantain, fried",
+                    "Mexican chocolate tablet",
+                    "Toasted sesame seeds & almonds",
+                    "Whole free-range chicken"
+                ],
+                instructions: [
+                    "De-seed and lightly toast all dried chiles on a comal without burning.",
+                    "Simmer chiles in aromatic broth until fully softened.",
+                    "Blend chiles with fried plantain, nuts, spices, and Mexican chocolate into a rich paste.",
+                    "Simmer paste in earthenware pot for 2 hours, stirring constantly.",
+                    "Pour over tender poached chicken and garnish with toasted sesame seeds."
+                ],
+                tip: "Toast the sesame seeds in iron skillet until golden brown—do not rush or the mole will taste bitter."
+            },
+            {
+                id: 3,
+                name: "Kashmiri Rogan Josh",
+                culture: "Indian",
+                origin: "Kashmir, India",
+                prepTime: "30 mins",
+                cookTime: "2 hours",
+                category: "Indian",
+                image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=80",
+                contributor: "Dadi Ji, 1971",
+                ingredients: [
+                    "1kg bone-in lamb shoulder",
+                    "2 tbsp Kashmiri red chili powder",
+                    "1 cup whisked whole yogurt",
+                    "Asafetida (Hing) & dried ginger powder",
+                    "Ghee or mustard oil"
+                ],
+                instructions: [
+                    "Sear lamb chunks in hot ghee until well browned on all sides.",
+                    "Stir in Kashmiri chili powder dissolved in a splash of water to get that signature ruby color.",
+                    "Lower heat and slowly whisk in yogurt one spoonful at a time to prevent curdling.",
+                    "Cover and simmer on very low heat until meat falls apart tender."
+                ],
+                tip: "Never add onions or garlic to authentic traditional Kashmiri Rogan Josh; let the fennel and ginger shine."
+            },
+            {
+                id: 4,
+                name: "Edomae Tamagoyaki",
+                culture: "Japanese",
+                origin: "Tokyo, Japan",
+                prepTime: "20 mins",
+                cookTime: "15 mins",
+                category: "Japanese",
+                image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80",
+                contributor: "Chef Kenji's Grandfather, 1948",
+                ingredients: [
+                    "6 fresh eggs",
+                    "2 tbsp dashi stock",
+                    "1 tsp mirin",
+                    "1 tsp light soy sauce",
+                    "Neutral oil for pan"
+                ],
+                instructions: [
+                    "Whisk eggs gently without creating foam, adding dashi, mirin, and soy sauce.",
+                    "Heat square makiyaki-nabe pan and oil lightly.",
+                    "Pour a thin layer of egg mixture. When slightly set, roll it toward you.",
+                    "Oil pan again, pour another thin layer underneath the roll, and repeat."
+                ],
+                tip: "Strain the beaten eggs through a fine mesh sieve twice for an impossibly smooth, velvet texture."
+            },
+            {
+                id: 5,
+                name: "Fez Imperial Lamb Tagine",
+                culture: "Moroccan",
+                origin: "Fez, Morocco",
+                prepTime: "30 mins",
+                cookTime: "2.5 hours",
+                category: "Moroccan",
+                image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+                contributor: "Amina's Grandmother, 1960",
+                ingredients: [
+                    "1.5kg lamb shank",
+                    "Preserved lemons, quartered",
+                    "Green olives (Beldi)",
+                    "Saffron threads soaked in warm water",
+                    "Ras el hanout & ginger"
+                ],
+                instructions: [
+                    "Marinate lamb in saffron, ginger, garlic, and turmeric for at least 2 hours.",
+                    "Layer sliced onions at the base of a clay tagine pot, add lamb and spices.",
+                    "Cover with conical lid and simmer over charcoal or low oven for 2.5 hours.",
+                    "Add preserved lemons and olives in the final 20 minutes."
+                ],
+                tip: "Use a heat diffuser if cooking on modern gas burners so the clay tagine vessel doesn't crack."
+            }
+        ];
+
+        // Render Recipe Grid
+        function renderRecipes(recipesToRender) {
+            const grid = document.getElementById('recipeGrid');
+            grid.innerHTML = '';
+
+            if (recipesToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fa-solid fa-utensils text-4xl text-stone-300 mb-3"></i>
+                        <p class="text-stone-600 font-medium">No heirlooms found matching your search.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            recipesToRender.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'recipe-card bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm transition-all duration-300 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="relative aspect-[16/10] overflow-hidden bg-stone-100">
+                            <img src="${recipe.image}" alt="${recipe.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/e7e5e4/44403c?text=Heirloom+Recipe'">
+                            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-bold text-stone-900 shadow-sm">
+                                ${recipe.culture}
+                            </div>
+                            <div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-xl text-[11px] text-white font-medium">
+                                <i class="fa-solid fa-clock mr-1 text-amber-400"></i> ${recipe.prepTime}
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs uppercase tracking-widest text-terra-700 font-semibold block">${recipe.origin}</span>
+                            <h3 class="text-xl font-serif font-bold text-stone-900">${recipe.name}</h3>
+                            <p class="text-xs text-stone-500 italic">Preserved by ${recipe.contributor}</p>
+                            
+                            <div class="bg-amber-50/70 rounded-xl p-3 border border-amber-100">
+                                <div class="flex items-center space-x-1.5 text-amber-900 font-semibold text-[11px] uppercase tracking-wider mb-1">
+                                    <i class="fa-solid fa-key text-amber-600 text-xs"></i>
+                                    <span>Secret Family Tip</span>
+                                </div>
+                                <p class="text-stone-700 text-xs line-clamp-2">"${recipe.tip}"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="openRecipeModal(${recipe.id})" class="w-full py-3 rounded-xl bg-stone-100 hover:bg-amber-800 hover:text-white text-stone-800 text-xs font-bold transition flex items-center justify-center space-x-2">
+                            <span>Open Heirloom Card</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Modal Functionality
+        function openRecipeModal(id) {
+            const recipe = recipes.find(r => r.id === id);
+            if (!recipe) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-semibold rounded-lg">${recipe.culture} Cuisine</span>
+                        <span class="text-xs text-stone-500 font-medium">Archived from ${recipe.origin}</span>
+                    </div>
+
+                    <div>
+                        <h2 class="text-3xl font-serif font-bold text-stone-900 mb-1">${recipe.name}</h2>
+                        <p class="text-xs text-stone-500">Contributed by <strong class="text-stone-700">${recipe.contributor}</strong></p>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow-inner bg-stone-100">
+                        <img src="${recipe.image}" alt="${recipe.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x450/e7e5e4/44403c?text=Heirloom'">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 bg-stone-50 p-4 rounded-2xl border border-stone-200 text-center">
+                        <div>
+                            <span class="block text-[10px] uppercase font-bold text-stone-400">Prep Time</span>
+                            <span class="font-bold text-stone-900 text-sm">${recipe.prepTime}</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase font-bold text-stone-400">Cook Time</span>
+                            <span class="font-bold text-stone-900 text-sm">${recipe.cookTime}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 rounded-2xl p-5 border border-amber-200">
+                        <div class="flex items-center space-x-2 text-amber-900 font-bold text-xs uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-key text-amber-600"></i>
+                            <span>Secret Family Tip</span>
+                        </div>
+                        <p class="text-stone-800 text-sm italic">"${recipe.tip}"</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-stone-900 text-sm uppercase tracking-wider">Ingredients</h4>
+                        <ul class="list-disc list-inside space-y-1.5 text-sm text-stone-700 bg-stone-50 p-4 rounded-2xl border border-stone-200">
+                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-stone-900 text-sm uppercase tracking-wider">Step-by-Step Instructions</h4>
+                        <ol class="space-y-3 text-sm text-stone-700">
+                            ${recipe.instructions.map((step, idx) => `
+                                <li class="flex items-start space-x-3 bg-stone-50 p-3.5 rounded-xl border border-stone-200">
+                                    <span class="w-6 h-6 rounded-full bg-amber-800 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">${idx + 1}</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ol>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('recipeModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('recipeModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Search & Filter functionality
+        const searchInput = document.getElementById('recipeSearch');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = recipes.filter(r => 
+                r.name.toLowerCase().includes(query) ||
+                r.culture.toLowerCase().includes(query) ||
+                r.origin.toLowerCase().includes(query) ||
+                r.ingredients.some(i => i.toLowerCase().includes(query))
+            );
+            renderRecipes(filtered);
+        });
+
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-amber-800', 'text-white');
+                    b.classList.add('bg-stone-100', 'text-stone-700');
+                });
+                e.target.classList.remove('bg-stone-100', 'text-stone-700');
+                e.target.classList.add('bg-amber-800', 'text-white');
+
+                const filter = e.target.getAttribute('data-filter');
+                if (filter === 'all') {
+                    renderRecipes(recipes);
+                } else {
+                    const filtered = recipes.filter(r => r.category === filter);
+                    renderRecipes(filtered);
+                }
+            });
+        });
+
+        // Quiz Logic
+        let quizAnswers = {};
+        function setQuizAnswer(step, answer) {
+            quizAnswers[step] = answer;
+            if (step < 3) {
+                document.querySelector(`.quiz-step[data-step="${step}"]`).classList.add('hidden');
+                document.querySelector(`.quiz-step[data-step="${step + 1}"]`).classList.remove('hidden');
+            } else {
+                // Show Result
+                document.querySelector('.quiz-step[data-step="3"]').classList.add('hidden');
+                const resultDiv = document.getElementById('quizResult');
+                resultDiv.classList.remove('hidden');
+
+                // Determine match
+                let matched = recipes[0];
+                if (quizAnswers[1] === 'Warm & Earthy') matched = recipes[1];
+                else if (quizAnswers[1] === 'Fragrant & Spiced') matched = recipes[2];
+                else if (quizAnswers[1] === 'Bright & Zesty') matched = recipes[3];
+                else if (quizAnswers[1] === 'Comforting & Rich') matched = recipes[4];
+
+                document.getElementById('resultTitle').innerText = matched.name;
+                document.getElementById('resultDesc').innerText = `Based on your desire for "${quizAnswers[1]}" during a "${quizAnswers[2]}", we matched you with this authentic ${matched.culture} recipe preserved from ${matched.origin}.`;
+                window.matchedRecipeId = matched.id;
+            }
+        }
+
+        function viewMatchedRecipe() {
+            if (window.matchedRecipeId) {
+                openRecipeModal(window.matchedRecipeId);
+            }
+        }
+
+        function resetQuiz() {
+            quizAnswers = {};
+            document.getElementById('quizResult').classList.add('hidden');
+            document.querySelector('.quiz-step[data-step="1"]').classList.remove('hidden');
+        }
+
+        // Story Prompt Generator
+        const prompts = [
+            { text: "What was the very first dish you learned to cook by your mother's side, and what mistake did you make the first time?", category: "Childhood Memory" },
+            { text: "Which spice or ingredient reminds you instantly of your childhood home, and why?", category: "Sensory Ancestry" },
+            { text: "Was there a secret ingredient your grandmother swore by that she added to almost everything?", category: "Secret Techniques" },
+            { text: "Describe a celebratory feast or holiday meal from your youth that took days to prepare.", category: "Festive Traditions" },
+            { text: "What dish did your family eat during difficult times to find comfort and strength?", category: "Resilience & Soul Food" }
+        ];
+
+        function generateNewPrompt() {
+            const random = prompts[Math.floor(Math.random() * prompts.length)];
+            document.getElementById('storyPromptText').innerText = `"${random.text}"`;
+            document.getElementById('promptCategory').innerText = random.category;
+        }
+
+        // Simulated Recorder
+        let isRecording = false;
+        function toggleRecording() {
+            isRecording = !isRecording;
+            const btn = document.getElementById('recordBtn');
+            const icon = document.getElementById('recordIcon');
+            const status = document.getElementById('recordStatus');
+            
+            if (isRecording) {
+                btn.classList.remove('bg-terra-700', 'hover:bg-terra-600');
+                btn.classList.add('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
+                icon.className = 'fa-solid fa-stop';
+                status.innerText = 'Recording voice memory... (Speak clearly)';
+            } else {
+                btn.classList.remove('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
+                btn.classList.add('bg-terra-700', 'hover:bg-terra-600');
+                icon.className = 'fa-solid fa-microphone';
+                status.innerText = 'Voice memory saved securely to archive!';
+                showToast('Voice Recorded', 'Audio clip successfully attached to story bank.');
+            }
+        }
+
+        // Handle Form Submission
+        function handleRecipeSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('dishName').value;
+            const culture = document.getElementById('dishCulture').value;
+            const prepTime = document.getElementById('prepTime').value || '30 mins';
+            const cookTime = document.getElementById('cookTime').value || '1 hour';
+            const category = document.getElementById('dishCategory').value;
+            const ingredients = document.getElementById('dishIngredients').value.split('\n').filter(i => i.trim() !== '');
+            const instructions = document.getElementById('dishInstructions').value.split('\n').filter(i => i.trim() !== '');
+            const tip = document.getElementById('dishTip').value;
+            const contributor = document.getElementById('dishContributor').value || 'Young Generation Contributor';
+            const image = document.getElementById('dishImage').value || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80';
+
+            const newRecipe = {
+                id: recipes.length + 1,
+                name,
+                culture,
+                origin: culture,
+                prepTime,
+                cookTime,
+                category,
+                image,
+                contributor,
+                ingredients,
+                instructions,
+                tip
+            };
+
+            recipes.unshift(newRecipe);
+            renderRecipes(recipes);
+            document.getElementById('recipeForm').reset();
+            showToast('Heirloom Preserved!', `"${name}" has been successfully added to the vault.`);
+            
+            // Scroll to vault
+            document.getElementById('vault').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4000);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initialize App on Load
+        window.onload = function() {
+            renderRecipes(recipes);
+        };
+    </script>
+</body>
+</html>
